@@ -3,12 +3,12 @@
 
 ## 网易云API
 ### 搜索
-`GET http://music.163.com/api/search/get/`
+`POST http://music.163.com/api/search/get/`
 ```
 参数:
 s: 搜索的内容
-offset: 偏移量
-limit: 获取的数量
+offset: 页码
+limit: 页大小
 type: 搜索类型
       1=歌曲,10=专辑,100=歌手,1000=歌单,1002=用户,1004=mv,1006=歌词,1009=主播电台
 ```
@@ -33,6 +33,15 @@ tv: -1,搜索tlyric歌词
 ```text
 参数:
 id: 歌曲ID
+```
+
+### 用户歌单
+* `POST http://music.163.com/api/user/playlist`
+```text
+参数：
+uid：用户ID
+offset：页码
+limit：页大小
 ```
 
 ### 歌单详情
