@@ -19,6 +19,7 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.util.DigestUtils;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(classes = TrumpetApplication.class)
@@ -64,5 +65,10 @@ public class TrumpetApplicationTests {
   public void userPlayList() {
     String userPlayList = neteaseAPI.userPlayList("33182671", 0, 3);
     System.out.println(userPlayList);
+  }
+
+  public static void main(String[] args) {
+    //http://m2.music.126.net/XYVgKjLVhUz4E3Xzx6g1NA==/7957165651774040.mp3
+    String ifsId = "7957165651774040";
   }
 }
