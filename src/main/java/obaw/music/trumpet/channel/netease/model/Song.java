@@ -1,51 +1,36 @@
 package obaw.music.trumpet.channel.netease.model;
 
+import java.util.List;
+
 /**
  * @author xiaowei
  * @time 17-5-3 下午4:19
  * @describe 歌曲对象
  */
-public class Songs {
+public class Song {
 
-  /**
-   * ID
-   */
+  /** ID */
   private String id;
-  /**
-   * 歌曲名称
-   */
+  /** 歌曲名称 */
   private String name;
-  /**
-   * 艺术家
-   */
-  private String artists;
-  /**
-   * 专辑
-   */
-  private String album;
-  /**
-   * 时长
-   */
+  /** 艺术家 */
+  private List<Artist> artists;
+  /** 专辑 */
+  private Album album;
+  /** 时长 */
   private String duration;
-  /**
-   * 版权标识
-   */
+  /** 版权标识 */
   private String copyrightId;
-  /**
-   * 状态
-   */
+  /** 状态 */
   private String status;
+
   private SongFile hMusic;
   private SongFile mMusic;
   private SongFile lMusic;
   private SongFile bMusic;
-  /**
-   * mvId
-   */
+  /** mvId */
   private String mvid;
-  /***
-   * Mp3Url
-   */
+  /** * Mp3Url */
   private String mp3Url;
 
   public String getId() {
@@ -64,19 +49,19 @@ public class Songs {
     this.name = name;
   }
 
-  public String getArtists() {
+  public List<Artist> getArtists() {
     return artists;
   }
 
-  public void setArtists(String artists) {
+  public void setArtists(List<Artist> artists) {
     this.artists = artists;
   }
 
-  public String getAlbum() {
+  public Album getAlbum() {
     return album;
   }
 
-  public void setAlbum(String album) {
+  public void setAlbum(Album album) {
     this.album = album;
   }
 

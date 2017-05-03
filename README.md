@@ -36,7 +36,7 @@ id: 歌曲ID
 ```
 
 ### 用户歌单
-* `POST http://music.163.com/api/user/playlist`
+`POST http://music.163.com/api/user/playlist`
 ```text
 参数：
 uid：用户ID

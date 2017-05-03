@@ -6,53 +6,37 @@ package obaw.music.trumpet.channel.netease.model;
  * @describe 歌曲文件
  */
 public class SongFile {
-
-  /**
-   * 歌曲ID
-   */
-  private String id;
-  /**
-   * 大小
-   */
-  private String size;
-  /**
-   * 格式
-   */
+  private Object name;
+  private int id;
+  private int size;
   private String extension;
-  /**
-   *
-   */
-  private String sr;
-  /**
-   * 文件ID
-   */
-  private String dfsId;
-  /**
-   * 码率
-   */
-  private String bitrate;
-  /**
-   * 播放时间
-   */
-  private String playTime;
-  /**
-   *
-   */
-  private String volumeDelta;
+  private int sr;
+  private long dfsId;
+  private int bitrate;
+  private int playTime;
+  private double volumeDelta;
 
-  public String getId() {
+  public Object getName() {
+    return name;
+  }
+
+  public void setName(Object name) {
+    this.name = name;
+  }
+
+  public int getId() {
     return id;
   }
 
-  public void setId(String id) {
+  public void setId(int id) {
     this.id = id;
   }
 
-  public String getSize() {
+  public int getSize() {
     return size;
   }
 
-  public void setSize(String size) {
+  public void setSize(int size) {
     this.size = size;
   }
 
@@ -64,43 +48,43 @@ public class SongFile {
     this.extension = extension;
   }
 
-  public String getSr() {
+  public int getSr() {
     return sr;
   }
 
-  public void setSr(String sr) {
+  public void setSr(int sr) {
     this.sr = sr;
   }
 
-  public String getDfsId() {
+  public long getDfsId() {
     return dfsId;
   }
 
-  public void setDfsId(String dfsId) {
+  public void setDfsId(long dfsId) {
     this.dfsId = dfsId;
   }
 
-  public String getBitrate() {
+  public int getBitrate() {
     return bitrate;
   }
 
-  public void setBitrate(String bitrate) {
+  public void setBitrate(int bitrate) {
     this.bitrate = bitrate;
   }
 
-  public String getPlayTime() {
+  public int getPlayTime() {
     return playTime;
   }
 
-  public void setPlayTime(String playTime) {
+  public void setPlayTime(int playTime) {
     this.playTime = playTime;
   }
 
-  public String getVolumeDelta() {
+  public double getVolumeDelta() {
     return volumeDelta;
   }
 
-  public void setVolumeDelta(String volumeDelta) {
+  public void setVolumeDelta(double volumeDelta) {
     this.volumeDelta = volumeDelta;
   }
 }
