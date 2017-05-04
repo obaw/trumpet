@@ -9,28 +9,46 @@ import java.util.List;
  */
 public class Song {
 
-  /** ID */
+  /**
+   * ID
+   */
   private String id;
-  /** 歌曲名称 */
+  /**
+   * 歌曲名称
+   */
   private String name;
-  /** 艺术家 */
+  /**
+   * 艺术家
+   */
   private List<Artist> artists;
-  /** 专辑 */
+  /**
+   * 专辑
+   */
   private Album album;
-  /** 时长 */
+  /**
+   * 时长
+   */
   private String duration;
-  /** 版权标识 */
+  /**
+   * 版权标识
+   */
   private String copyrightId;
-  /** 状态 */
+  /**
+   * 状态
+   */
   private String status;
 
   private SongFile hMusic;
   private SongFile mMusic;
   private SongFile lMusic;
   private SongFile bMusic;
-  /** mvId */
+  /**
+   * mvId
+   */
   private String mvid;
-  /** * Mp3Url */
+  /**
+   * Mp3Url
+   */
   private String mp3Url;
 
   public String getId() {

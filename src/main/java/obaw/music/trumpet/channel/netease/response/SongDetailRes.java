@@ -8,7 +8,7 @@ import obaw.music.trumpet.channel.netease.model.Song;
  * @time 17-5-4 上午10:14
  * @describe 歌曲详情响应对象
  */
-public class SongDetailResponse extends BaseResponse {
+public class SongDetailRes extends BaseRes {
 
   private List<Song> songs;
 

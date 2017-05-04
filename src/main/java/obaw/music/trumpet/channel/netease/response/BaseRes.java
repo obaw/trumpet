@@ -5,7 +5,7 @@ package obaw.music.trumpet.channel.netease.response;
  * @time 17-5-4 上午10:26
  * @describe
  */
-public class BaseResponse {
+public class BaseRes {
 
   private int code;
 

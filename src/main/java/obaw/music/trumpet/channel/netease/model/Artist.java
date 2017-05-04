@@ -20,7 +20,7 @@ public class Artist {
   private int albumSize;
   private String trans;
   private int musicSize;
-  private List<?> alias;
+  private List<String> alias;
 
   public String getName() {
     return name;
@@ -102,11 +102,11 @@ public class Artist {
     this.musicSize = musicSize;
   }
 
-  public List<?> getAlias() {
+  public List<String> getAlias() {
     return alias;
   }
 
-  public void setAlias(List<?> alias) {
+  public void setAlias(List<String> alias) {
     this.alias = alias;
   }
 }

@@ -5,7 +5,7 @@ package obaw.music.trumpet.channel.netease.response;
  * @time 17-5-4 上午10:24
  * @describe 搜索响应对象
  */
-public class SearchResponse<T> extends BaseResponse {
+public class SearchRes<T> extends BaseRes {
 
   /**
    * 结果

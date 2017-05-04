@@ -34,11 +34,11 @@ public class PlayList {
   private int totalDuration;
   private String name;
   private int id;
-  private Object description;
+  private String description;
   private int cloudTrackCount;
   private int subscribedCount;
   private List<?> subscribers;
-  private List<?> tags;
+  private List<String> tags;
 
   public boolean isSubscribed() {
     return subscribed;
@@ -240,14 +240,6 @@ public class PlayList {
     this.id = id;
   }
 
-  public Object getDescription() {
-    return description;
-  }
-
-  public void setDescription(Object description) {
-    this.description = description;
-  }
-
   public int getCloudTrackCount() {
     return cloudTrackCount;
   }
@@ -272,12 +264,19 @@ public class PlayList {
     this.subscribers = subscribers;
   }
 
-  public List<?> getTags() {
+  public String getDescription() {
+    return description;
+  }
+
+  public void setDescription(String description) {
+    this.description = description;
+  }
+
+  public List<String> getTags() {
     return tags;
   }
 
-  public void setTags(List<?> tags) {
+  public void setTags(List<String> tags) {
     this.tags = tags;
   }
-
 }

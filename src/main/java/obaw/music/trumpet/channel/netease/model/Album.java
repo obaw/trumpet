@@ -29,7 +29,7 @@ public class Album {
   private String commentThreadId;
   private Object subType;
   private List<Song> songs;
-  private List<?> alias;
+  private List<String> alias;
   private List<Artist> artists;
 
   public String getName() {
@@ -192,11 +192,11 @@ public class Album {
     this.songs = songs;
   }
 
-  public List<?> getAlias() {
+  public List<String> getAlias() {
     return alias;
   }
 
-  public void setAlias(List<?> alias) {
+  public void setAlias(List<String> alias) {
     this.alias = alias;
   }
 
