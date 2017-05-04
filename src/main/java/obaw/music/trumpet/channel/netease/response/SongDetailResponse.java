@@ -3,18 +3,14 @@ package obaw.music.trumpet.channel.netease.response;
 import java.util.List;
 import obaw.music.trumpet.channel.netease.model.Song;
 
-/** Created by xiaowei on 17-5-3. */
-public class SongDetailResponse {
-  private int code;
+/**
+ * @author xiaowei
+ * @time 17-5-4 上午10:14
+ * @describe 歌曲详情响应对象
+ */
+public class SongDetailResponse extends BaseResponse {
+
   private List<Song> songs;
-
-  public int getCode() {
-    return code;
-  }
-
-  public void setCode(int code) {
-    this.code = code;
-  }
 
   public List<Song> getSongs() {
     return songs;

@@ -2,8 +2,13 @@ package obaw.music.trumpet.channel.netease.model;
 
 import java.util.List;
 
-/** Created by xiaowei on 17-5-3. */
+/**
+ * @author xiaowei
+ * @time 17-5-4 上午10:13
+ * @describe 歌手
+ */
 public class Artist {
+
   private String name;
 
   private int id;
