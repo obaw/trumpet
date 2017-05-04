@@ -3,7 +3,7 @@ package obaw.music.trumpet.channel.netease.enums;
 /**
  * @author xiaowei
  * @time 17-5-4 上午11:12
- * @describe
+ * @describe 接口服务枚举
  */
 public enum Service {
   SEARCH("/api/search/get/"),

@@ -1,13 +1,16 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset="UTF-8"/>
+  <meta charset="UTF-8">
   <title>Title</title>
-  <script src="../static/js/index.js"></script>
+  <link href="../static/css/index.css" th:href="@{/css/index.css}" rel="stylesheet">
+  <script src="../static/js/index.js" th:src="@{/js/index.js}"></script>
 </head>
 <body>
-<div th:each="playList : ${playLists}">
-  <img src="ss.jpg" th:attr="src=${playList.coverImgUrl}" width="400" height="400" onclick=""/>
+<div class="playlist" th:each="playList:${playLists}">
+  <img src="http://p1.music.126.net/7MeUlnlKY9oA6YOSivs5uw==/3424978721733926.jpg" th:src="${playList.coverImgUrl}"
+       width="120" height="120"/>
+  <span th:text="${playList.name}">歌单名称</span>
 </div>
 </body>
 </html>
