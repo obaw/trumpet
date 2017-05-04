@@ -4,13 +4,47 @@
   <meta charset="UTF-8">
   <title>Title</title>
   <link href="../static/css/index.css" th:href="@{/css/index.css}" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+        rel="stylesheet">
+  <script src="../static/js/jquery-3.2.1.min.js" th:src="@{/js/jquery-3.2.1.min.js}"></script>
   <script src="../static/js/index.js" th:src="@{/js/index.js}"></script>
 </head>
 <body>
-<div class="playlist" th:each="playList:${playLists}">
-  <img src="http://p1.music.126.net/7MeUlnlKY9oA6YOSivs5uw==/3424978721733926.jpg" th:src="${playList.coverImgUrl}"
-       width="120" height="120"/>
-  <span th:text="${playList.name}">歌单名称</span>
+<div id="box">
+  <div class="bg">
+    <div class="bg-blur"
+         style="background:url(../static/img/backgroud.jpg) center center / cover;"
+         th:style="'background:url(' + @{/img/backgroud.jpg} + ') center center / cover'"></div>
+  </div>
+  <div class="bg-lyr">
+    <div class="header">
+      <div class="menu-ico">
+        <span></span>
+        <span></span>
+      </div>
+      <div class="search">
+        <label class="search-ico">
+          <i class="material-icons" style="font-size: 30px;">search</i>
+        </label>
+        <input id="search" type="text" placeholder="告白气球">
+      </div>
+    </div>
+    <div class="content">
+      <div class="tab">
+        <!--/*@thymesVar id="playLists" type="aj"*/-->
+        <div class="playlist" th:each="playlist : ${playLists}">
+          <div class="art" style="width: 183px;height: 183px;background: center center;"
+               th:style="'width: 183px;height: 183px;background:url(' + ${playlist.coverImgUrl} + ') center center / cover'"></div>
+          <div class="info">
+            <h1 th:text="${playlist.name}">葬爱家族办公室专用歌单</h1>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="menu">
+
+    </div>
+  </div>
 </div>
 </body>
 </html>

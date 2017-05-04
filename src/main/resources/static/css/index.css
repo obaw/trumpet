@@ -1,5 +1,244 @@
-/*歌单*/
-.playlist {
-  border: solid 1px cadetblue;
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  /* box-sizing: border-box; */
+}
+
+body {
+  background-color: #90caf9;
+  color: #fff;
+  font-size: 17px;
+  line-height: 1;
+  overflow: hidden;
+  /* cursor: default; */
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+input[type=text] {
+  background: 0 0;
+  border: none;
+  color: #fff;
+  outline: 0;
+  border-bottom: 1px solid;
   float: left;
+  width: 105px;
+  font: inherit;
+  line-height: 1.4;
+  -o-transition: all .15s ease;
+  transition: all .15s ease;
+  -webkit-transition: all .15s ease;
+}
+
+#box {
+  width: 1024px;
+  height: 576px;
+  box-shadow: 0 15px 50px rgba(0, 0, 0, .25);
+  top: 50%;
+  left: 50%;
+  margin-top: -288px;
+  margin-left: -512px;
+  -webkit-animation: fadeInDown 1s .2s ease both;
+  -moz-animation: fadeInDown 1s .2s ease both;
+}
+
+@-webkit-keyframes fadeInDown {
+  0% {
+    opacity: 0;
+    -webkit-transform: translateY(-20px)
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: translateY(0)
+  }
+}
+
+.bg {
+  overflow: hidden;
+}
+
+.bg-blur {
+  box-shadow: 0 10px 150px rgba(0, 0, 0, .3) inset;
+  -webkit-filter: blur(30px);
+  -moz-filter: blur(30px);
+  -o-filter: blur(30px);
+  -ms-filter: blur(30px);
+  filter: progid:DXImageTransform.Microsoft.Blur(PixelRadius='30');
+  filter: blur(30px);
+}
+
+.bg-lyr {
+  top: 0;
+  left: 0;
+  background: rgba(0, 0, 0, .42);
+  padding: 20px 0;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.header {
+  top: 0;
+  left: 0;
+  z-index: 5;
+  width: 100%;
+  padding: 20px;
+  height: 70px;
+
+}
+
+.menu.active {
+  -webkit-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+  opacity: 1;
+  visibility: visible;
+}
+
+.menu {
+  width: 280px;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 3;
+  background: rgba(0, 0, 0, .85);
+  padding-top: 70px;
+  opacity: 0;
+  visibility: hidden;
+  transform: translate3d(-100%, 0, 0);
+  -webkit-transform: translate3d(-100%, 0, 0);
+  -o-transition: all .2s ease;
+  transition: all .2s ease;
+  -webkit-transition: all .2s ease;
+}
+
+.close-btn, .menu-ico {
+  float: left;
+  margin: 0 20px 0 0;
+  padding-top: 8px;
+  width: 27px;
+  cursor: pointer;
+}
+
+.close-btn span, .menu-ico span {
+  display: block;
+  width: 25px;
+  height: 1px;
+  background: #fff;
+  margin-bottom: 10px;
+  -o-transition: all .2s ease;
+  transition: all .2s ease;
+  -webkit-transition: all .2s ease;
+}
+
+.close-btn span:first-child, .menu-ico.active span:first-child {
+  -webkit-transform: rotate(45deg) translate3d(2px, 6px, 0);
+  transform: rotate(45deg) translate3d(2px, 6px, 0);
+  width: 27px;
+}
+
+.close-btn span:nth-child(2), .menu-ico.active span:nth-child(2) {
+  -webkit-transform: rotate(-45deg) translate3d(2px, -6px, 0);
+  transform: rotate(-45deg) translate3d(2px, -6px, 0);
+  width: 27px;
+}
+
+.search-ico {
+  float: left;
+  margin: 0 20px 0 0;
+  width: 27px;
+  cursor: pointer;
+}
+
+.content {
+  overflow: auto;
+  height: -webkit-calc(100% - 30px);
+  height: calc(100% - 30px);
+  float: left;
+  width: 100%;
+  margin-top: 50px;
+  position: relative;
+}
+
+.content .tab {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.content .tab {
+  padding-left: 20px;
+}
+
+.playlist {
+  float: left;
+  text-align: center;
+  padding-right: 20px;
+  width: 20%;
+}
+
+.playlist .art, .album-large .art, .genre .art {
+  position: relative;
+  width: 100%;
+  max-width: 100%;
+  height: 175px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, .2);
+  background: url(../images/loader.gif) center center no-repeat #444;
+  cursor: pointer;
+}
+
+.playlist .info, .genre .info {
+  padding: 10px 0;
+  line-height: 1.2;
+  height: 54px;
+  width: 100%;
+  float: left;
+  -o-transition: all .2s ease;
+  transition: all .2s ease;
+  -webkit-transition: all .2s ease;
+}
+
+.playlist .info h1, .genre .info h1 {
+  text-shadow: 0 2px 2px rgba(0, 0, 0, .1);
+  font-size: 15px;
+  font-weight: normal;
+  width: 100%;
+}
+
+.playlist .info h1, .album .info p, .genre .info h1 {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+#box, .bg, .bg-blur, .bg-lyr {
+  border-radius: 8px;
+}
+
+#box, .bg, .bg-blur, .bg-lyr, .header, .menu {
+  position: absolute;
+}
+
+.bg, .bg-blur, .bg-lyr {
+  width: 100%;
+  height: 100%;
+}
+
+/* 滚动条 */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track-piece {
+  background-color: rgba(0, 0, 0, 0);
+}
+
+/*滑块设置*/
+::-webkit-scrollbar-thumb {
+  height: 10px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, .6);
 }
