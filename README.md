@@ -1,5 +1,5 @@
 # trumpet
-根据网易云音乐api改版的音乐网站
+[根据网易云音乐api改版的音乐网站](https://splayerdemo.firebaseapp.com/examples/partial-custom-splayer-demo/)
 
 ## 网易云API
 ### 搜索
