@@ -6,6 +6,9 @@
   <link href="../static/css/index.css" th:href="@{/css/index.css}" rel="stylesheet">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
         rel="stylesheet">
+  <link
+      href='http://cdn.webfont.youziku.com/webfonts/nomal/102256/46865/590b66e8f629da1848a0f580.css'
+      rel='stylesheet' type='text/css'/>
   <script src="../static/js/jquery-3.2.1.min.js" th:src="@{/js/jquery-3.2.1.min.js}"></script>
   <script src="../static/js/index.js" th:src="@{/js/index.js}"></script>
 </head>
@@ -33,7 +36,8 @@
       <div class="tab">
         <!--/*@thymesVar id="playLists" type="aj"*/-->
         <div class="playlist" th:each="playlist : ${playLists}">
-          <div class="art" style="width: 183px;height: 183px;background: center center;"
+          <div class="art"
+               style="width: 183px;height: 183px;background:url(../static/img/backgroud.jpg) center center / cover;"
                th:style="'width: 183px;height: 183px;background:url(' + ${playlist.coverImgUrl} + ') center center / cover'"></div>
           <div class="info">
             <h1 th:text="${playlist.name}">葬爱家族办公室专用歌单</h1>
