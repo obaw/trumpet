@@ -31,7 +31,8 @@ public class HttpUtil {
       }
       Request.Builder requestBuilder = new Request.Builder();
       requestBuilder.url(builder.build());
-      requestBuilder.post(RequestBody.create(MediaType.parse("multipart/form-data; charset=utf-8"), ""));
+      requestBuilder.post(
+          RequestBody.create(MediaType.parse("multipart/form-data; charset=utf-8"), ""));
       requestBuilder.addHeader("cache-control", "no-cache");
       Request request = requestBuilder.build();
       Response execute = httpClient.newCall(request).execute();

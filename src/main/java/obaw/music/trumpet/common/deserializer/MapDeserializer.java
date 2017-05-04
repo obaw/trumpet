@@ -19,8 +19,9 @@ import java.util.TreeMap;
 public class MapDeserializer implements JsonDeserializer<Map<String, Object>> {
 
   @Override
-  public Map<String, Object> deserialize(JsonElement jsonElement, Type type,
-      JsonDeserializationContext jsonDeserializationContext) throws JsonParseException {
+  public Map<String, Object> deserialize(
+      JsonElement jsonElement, Type type, JsonDeserializationContext jsonDeserializationContext)
+      throws JsonParseException {
     TreeMap<String, Object> treeMap = new TreeMap<>();
     JsonObject jsonObject = jsonElement.getAsJsonObject();
     Set<Entry<String, JsonElement>> entrySet = jsonObject.entrySet();

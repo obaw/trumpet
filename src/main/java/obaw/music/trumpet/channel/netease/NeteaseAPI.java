@@ -33,9 +33,9 @@ public class NeteaseAPI {
 
   public static String getaway = "http://music.163.com";
 
-
-  /***
-   *歌曲详情
+  /**
+   * * 歌曲详情
+   *
    * @param ids 歌曲ID
    * @return
    */
@@ -47,8 +47,9 @@ public class NeteaseAPI {
     return response != null ? response.getSongs() : null;
   }
 
-  /***
-   * 歌词详情
+  /**
+   * * 歌词详情
+   *
    * @param id 歌曲ID
    * @return
    */
@@ -59,8 +60,9 @@ public class NeteaseAPI {
     return response != null ? response.getLyric() : null;
   }
 
-  /***
-   * 歌单详情
+  /**
+   * * 歌单详情
+   *
    * @param id 歌单ID
    * @return
    */
@@ -71,8 +73,9 @@ public class NeteaseAPI {
     return response != null ? response.getResult() : null;
   }
 
-  /***
-   * 用户歌单
+  /**
+   * * 用户歌单
+   *
    * @param uid　用户ID
    * @param page 页码
    * @param pageSize 页大小
@@ -87,58 +90,60 @@ public class NeteaseAPI {
     return response != null ? response.getPlaylist() : null;
   }
 
-  /***
-   * 搜索歌曲
+  /**
+   * * 搜索歌曲
+   *
    * @param keyword
    * @param page
    * @param pageSize
    * @return
    */
   public SongResult searchSong(String keyword, Integer page, Integer pageSize) {
-    SearchRes<SongResult> search = search(keyword, 1, page, pageSize, new TypeToken<SearchRes<SongResult>>() {
-    }.getType());
+    SearchRes<SongResult> search =
+        search(keyword, 1, page, pageSize, new TypeToken<SearchRes<SongResult>>() {}.getType());
     return search != null ? search.getResult() : null;
   }
 
-  /***
-   * 搜索专辑
+  /**
+   * * 搜索专辑
+   *
    * @param keyword
    * @param page
    * @param pageSize
    * @return
    */
   public AlbumResult searchAlbum(String keyword, Integer page, Integer pageSize) {
-    SearchRes<AlbumResult> search = search(keyword, 10, page, pageSize,
-        new TypeToken<SearchRes<AlbumResult>>() {
-        }.getType());
+    SearchRes<AlbumResult> search =
+        search(keyword, 10, page, pageSize, new TypeToken<SearchRes<AlbumResult>>() {}.getType());
     return search != null ? search.getResult() : null;
   }
 
-  /***
-   * 搜索歌手
+  /**
+   * * 搜索歌手
+   *
    * @param keyword
    * @param page
    * @param pageSize
    * @return
    */
   public ArtistResult searchArtist(String keyword, Integer page, Integer pageSize) {
-    SearchRes<ArtistResult> search = search(keyword, 100, page, pageSize,
-        new TypeToken<SearchRes<ArtistResult>>() {
-        }.getType());
+    SearchRes<ArtistResult> search =
+        search(keyword, 100, page, pageSize, new TypeToken<SearchRes<ArtistResult>>() {}.getType());
     return search != null ? search.getResult() : null;
   }
 
-  /***
-   * 搜索歌单
+  /**
+   * * 搜索歌单
+   *
    * @param keyword
    * @param page
    * @param pageSize
    * @return
    */
   public PlayListResult searchPlayList(String keyword, Integer page, Integer pageSize) {
-    SearchRes<PlayListResult> search = search(keyword, 1000, page, pageSize,
-        new TypeToken<SearchRes<PlayListResult>>() {
-        }.getType());
+    SearchRes<PlayListResult> search =
+        search(
+            keyword, 1000, page, pageSize, new TypeToken<SearchRes<PlayListResult>>() {}.getType());
     return search != null ? search.getResult() : null;
   }
 
@@ -146,15 +151,17 @@ public class NeteaseAPI {
   //私有方法
   ///////////////////////////////////////////////
 
-  /***
-   * 搜索
+  /**
+   * * 搜索
+   *
    * @param keyword　关键字
    * @param type 类型1=歌曲,10=专辑,100=歌手,1000=歌单,1002=用户,1004=mv,1006=歌词,1009=主播电台
    * @param page　当前页
    * @param pageSize　页大小
    * @return
    */
-  private <T> T search(String keyword, Integer type, Integer page, Integer pageSize, Type classzType) {
+  private <T> T search(
+      String keyword, Integer type, Integer page, Integer pageSize, Type classzType) {
     Map<String, String> query = new HashMap<>();
     query.put("s", keyword);
     query.put("offset", page + "");
@@ -170,8 +177,8 @@ public class NeteaseAPI {
 
   private <T> T doPost(Service service, Map<String, String> param, Class<T> classz) {
     String post = HttpUtil.post(NeteaseAPI.getaway + service.getApi(), param);
-    SearchRes<SongResult> songResut = new Gson().fromJson(post, new TypeToken<SearchRes<SongResult>>() {
-    }.getType());
+    SearchRes<SongResult> songResut =
+        new Gson().fromJson(post, new TypeToken<SearchRes<SongResult>>() {}.getType());
     BaseRes response = new Gson().fromJson(post, BaseRes.class);
     if (response.getCode() != 200) {
       return null;

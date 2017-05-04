@@ -6,8 +6,11 @@ package obaw.music.trumpet.channel.netease.enums;
  * @describe
  */
 public enum Service {
-  SEARCH("/api/search/get/"), SONG("/api/song/detail"), LYRIC("/api/song/media"), PLAYLIST(
-      "/api/playlist/detail"), USER_PLAYLIST("/api/user/playlist");
+  SEARCH("/api/search/get/"),
+  SONG("/api/song/detail"),
+  LYRIC("/api/song/media"),
+  PLAYLIST("/api/playlist/detail"),
+  USER_PLAYLIST("/api/user/playlist");
 
   Service(String api) {
     this.api = api;
