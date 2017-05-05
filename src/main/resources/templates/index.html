@@ -6,9 +6,6 @@
   <link href="../static/css/index.css" th:href="@{/css/index.css}" rel="stylesheet">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
         rel="stylesheet">
-  <link
-      href='http://cdn.webfont.youziku.com/webfonts/nomal/102256/46865/590b66e8f629da1848a0f580.css'
-      rel='stylesheet' type='text/css'/>
   <script src="../static/js/jquery-3.2.1.min.js" th:src="@{/js/jquery-3.2.1.min.js}"></script>
   <script src="../static/js/index.js" th:src="@{/js/index.js}"></script>
 </head>
@@ -20,6 +17,7 @@
          th:style="'background:url(' + @{/img/backgroud.jpg} + ') center center / cover'"></div>
   </div>
   <div class="bg-lyr">
+    <!--header start-->
     <div class="header">
       <div class="menu-ico">
         <span></span>
@@ -32,19 +30,49 @@
         <input id="search" type="text" placeholder="告白气球">
       </div>
     </div>
-    <div class="content">
-      <div class="tab">
-        <!--/*@thymesVar id="playLists" type="aj"*/-->
-        <div class="playlist" th:each="playlist : ${playLists}">
+    <!--header end-->
+    <!--content start-->
+    <div class="content lessheight selected">
+      <div class="tab active">
+        <div class="playlist" id="clonePlaylist" style="display: none;">
           <div class="art"
                style="width: 183px;height: 183px;background:url(../static/img/backgroud.jpg) center center / cover;"
-               th:style="'width: 183px;height: 183px;background:url(' + ${playlist.coverImgUrl} + ') center center / cover'"></div>
+               th:style="'width: 183px;height: 183px;background:url(' + @{/img/backgroud.jpg} + ') center center / cover'">
+            <div class="play">
+              <i class="material-icons">play_circle_outline</i>
+            </div>
+          </div>
           <div class="info">
-            <h1 th:text="${playlist.name}">葬爱家族办公室专用歌单</h1>
+            <h1>葬爱家族办公室专用歌单</h1>
+          </div>
+        </div>
+        <div class="playlist-content" id="clonePlaylistContent" style="display: none;">
+          <div class="song-large">
+            <div class="art"
+                 style="width: 416px; height: 416px; background: url(../static/img/backgroud.jpg)center center / cover; "></div>
+          </div>
+          <div class="songs">
+            <h1>Mitch Froemming - Where the Sun Meets the Hills</h1>
+            <ul class="songs-list">
+              <li id="cloneSong" data-song="" style="display: none;">
+                <span>
+                  <i>1</i>
+                </span>
+                <p>歌曲名称</p>
+                <p>歌手</p>
+              </li>
+            </ul>
           </div>
         </div>
       </div>
     </div>
+    <!--content end-->
+    <!--bottom start-->
+    <div class="bottom">
+      <audio id="audio" controls="controls" autoplay="true">
+      </audio>
+    </div>
+    <!--bottom end-->
     <div class="menu">
 
     </div>
