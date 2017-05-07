@@ -1,5 +1,6 @@
 package obaw.music.trumpet.channel.netease.model;
 
+import java.math.BigInteger;
 import java.util.List;
 
 /**
@@ -12,7 +13,7 @@ public class Artist {
   private String name;
 
   private int id;
-  private int picId;
+  private BigInteger picId;
   private int img1v1Id;
   private String briefDesc;
   private String picUrl;
@@ -38,11 +39,11 @@ public class Artist {
     this.id = id;
   }
 
-  public int getPicId() {
+  public BigInteger getPicId() {
     return picId;
   }
 
-  public void setPicId(int picId) {
+  public void setPicId(BigInteger picId) {
     this.picId = picId;
   }
 

@@ -1,5 +1,8 @@
 package obaw.music.trumpet;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.util.Base64;
 import java.util.List;
 import obaw.music.trumpet.channel.netease.NeteaseAPI;
 import obaw.music.trumpet.channel.netease.model.PlayList;
@@ -23,10 +26,13 @@ public class TrumpetApplicationTests {
    */
   @Test
   public void search() {
-    SongResult search = neteaseAPI.searchSong("倔强+五月天", 0, 10);
+    SongResult search = neteaseAPI.searchSong("你就不要想起我", 1, 100);
+    System.out.println(search.getAllPage());
+    System.out.println(search.getPage());
+    System.out.println(search.getPageSize());
     List<Song> songs = search.getSongs();
     for (Song song : songs) {
-      System.out.println(song.getName());
+      System.out.println(song.getArtists().get(0).getName());
     }
   }
 
@@ -35,7 +41,7 @@ public class TrumpetApplicationTests {
    */
   @Test
   public void songDetail() {
-    String[] ids = {"385544"};
+    String[] ids = {"25949862"};
     List<Song> result = neteaseAPI.songDetail(ids);
     for (Song song : result) {
       System.out.println(song.getMp3Url());
@@ -71,8 +77,27 @@ public class TrumpetApplicationTests {
     }
   }
 
-  public static void main(String[] args) {
+  @Test
+  public void music() throws NoSuchAlgorithmException {
     //http://m2.music.126.net/XYVgKjLVhUz4E3Xzx6g1NA==/7957165651774040.mp3
-    String ifsId = "7957165651774040";
+    String input = "18586144556292660";
+    String key = "3go8&$8*3*3h0k(2)2";
+    byte[] keyBytes = key.getBytes();
+    byte[] searchBytes = input.getBytes();
+
+    for (int i = 0; i < searchBytes.length; ++i) {
+      searchBytes[i] ^= keyBytes[i % keyBytes.length];
+    }
+    MessageDigest mdInst = MessageDigest.getInstance("MD5");
+    mdInst.update(searchBytes);
+    byte[] result = Base64.getEncoder().encode(mdInst.digest());
+    String params = new String(result);
+    params = params.replace("+", "-");
+    params = params.replace("/", "_");
+    System.out.println("http://m2.music.126.net/" + params + "/" + input + ".mp3");
+  }
+
+  public static void main(String[] args) {
+
   }
 }

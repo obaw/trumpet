@@ -1,5 +1,7 @@
 package obaw.music.trumpet.web.controller;
 
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import obaw.music.trumpet.channel.netease.model.PlayList;
 import obaw.music.trumpet.channel.netease.model.Song;
@@ -36,9 +38,35 @@ public class NeteaseController extends BaseController {
 
   @RequestMapping("/search")
   public String search(String keyword) {
-    SongResult songResult = neteaseAPI.searchSong(keyword, 0, 10);
+    List<Song> resList = new ArrayList<>();
+    SongResult songResult = neteaseAPI.searchSong(keyword, 0, 100);
+    dis(songResult.getSongs(), resList);
+    if (songResult.getAllPage() > 1) {
+      for (int j = 1; j < songResult.getAllPage(); j++) {
+        SongResult iterSong = neteaseAPI.searchSong(keyword, j, 100);
+        dis(iterSong.getSongs(), resList);
+      }
+    }
     ListRes<Song> res = new ListRes<>(200);
-    res.setList(songResult.getSongs());
+    res.setList(resList);
     return gson.toJson(res);
   }
+
+  @RequestMapping("/song")
+  public String song(String id) {
+    Song song = neteaseAPI.songDetail(id);
+    ObjectRes<Song> res = new ObjectRes<>(200);
+    res.setObject(song);
+    return gson.toJson(res);
+  }
+
+  private void dis(List<Song> one, List<Song> res) {
+    for (Song song : one) {
+      String name = song.getName().toUpperCase();
+      if (!name.contains("COVER")) {
+        res.add(song);
+      }
+    }
+  }
+
 }

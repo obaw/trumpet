@@ -13,7 +13,7 @@
 <div id="box">
   <div class="bg">
     <div class="bg-blur"
-         style="background:url(../static/img/backgroud.jpg) center center / cover;"
+         style="background:url(../static/img/backgroud.jpg) center center / 100% 100%;"
          th:style="'background:url(' + @{/img/backgroud.jpg} + ') center center / cover'"></div>
   </div>
   <div class="bg-lyr">
@@ -34,7 +34,7 @@
     <!--content start-->
     <div class="content lessheight selected">
       <div class="tab active">
-        <div class="playlist" id="clonePlaylist" style="display: none;">
+        <div class="playlist" id="clonePlaylist" th:style="'display: none;'">
           <div class="art"
                style="width: 183px;height: 183px;background:url(../static/img/backgroud.jpg) center center / cover;"
                th:style="'width: 183px;height: 183px;background:url(' + @{/img/backgroud.jpg} + ') center center / cover'">
@@ -46,7 +46,7 @@
             <h1>葬爱家族办公室专用歌单</h1>
           </div>
         </div>
-        <div class="playlist-content" id="clonePlaylistContent" style="display: none;">
+        <div class="playlist-content" id="clonePlaylistContent" th:style="'display: none;'">
           <div class="song-large">
             <div class="art"
                  style="width: 416px; height: 416px; background: url(../static/img/backgroud.jpg)center center / cover; "></div>
@@ -54,12 +54,19 @@
           <div class="songs">
             <h1>Mitch Froemming - Where the Sun Meets the Hills</h1>
             <ul class="songs-list">
-              <li id="cloneSong" data-song="" style="display: none;">
+              <li id="cloneSong" data-song="" th:style="'display: none;'">
                 <span>
                   <i>1</i>
+                  <i class="material-icons hover">play_arrow</i>
                 </span>
                 <p>歌曲名称</p>
                 <p>歌手</p>
+                <span class="float-r saveit">
+                 <i class="material-icons">file_download</i>
+                </span>
+                <span class="float-r saveit">
+                  <i class="material-icons">share</i>
+                </span>
               </li>
             </ul>
           </div>
@@ -69,12 +76,82 @@
     <!--content end-->
     <!--bottom start-->
     <div class="bottom">
-      <audio id="audio" controls="controls" autoplay="true">
-      </audio>
+      <audio autoplay="true" id="audio"></audio>
+      <div class="controls" id="playerJS">
+        <div id="currentNP">
+          <div id="bottomArt"
+               th:style="'background:url(' + @{/img/backgroud.jpg} + ') center center / cover'">
+          </div>
+        </div>
+        <!-- not backwards-btn or reverse it's actually previous-btn, it will be fixed soon -->
+        <div class="prev-btn c-btn np-btn">
+          <i class="material-icons">skip_previous</i>
+        </div>
+        <div class="play-btn c-btn" id="playBtn">
+          <i class="material-icons">play_arrow</i>
+          <!--<i class="material-icons">pause</i>-->
+        </div>
+        <div class="next-btn c-btn np-btn">
+          <i class="material-icons">skip_next</i>
+        </div>
+        <div class="current-time s-time">0:00</div>
+        <div class="slider">
+          <div class="sliderBg"></div>
+          <input id="slider" type="range" value="0" max="100">
+        </div>
+        <div class="song-length s-time">5:19</div>
+
+        <div class="loop-btn o-btn">
+          <i class="material-icons">loop</i>
+        </div>
+        <div class="star-btn o-btn">
+          <i class="material-icons">file_download</i>
+        </div>
+        <div class="share-btn o-btn">
+          <i class="material-icons">share</i>
+        </div>
+        <div class="playlist-btn o-btn">
+          <i class="material-icons">playlist_play</i>
+        </div>
+      </div>
     </div>
     <!--bottom end-->
+    <!--menu start-->
     <div class="menu">
+      <div class="results-list" style="display: block;">
+        <p id="noresults" style="display: none;">No results found</p>
+        <ul>
 
+        </ul>
+        <li id="cloneSearch" style="display: none;">
+            <span>
+              <i>1</i>
+              <i class="material-icons hover">play_arrow</i>
+            </span>
+          <p>Wherer the sun meets the hills</p>
+        </li>
+      </div>
+    </div>
+    <!--menu end-->
+    <div class="queue">
+      <h1>播放列表</h1>
+      <ul class="queue-list">
+
+      </ul>
+      <li id="cloneQueue" data-song="" th:style="'display: none;'">
+                <span>
+                  <i>1</i>
+                  <i class="material-icons hover">play_arrow</i>
+                </span>
+        <p>歌曲名称</p>
+        <p>歌手</p>
+        <span class="float-r saveit">
+                 <i class="material-icons">file_download</i>
+                </span>
+        <span class="float-r saveit">
+                  <i class="material-icons">share</i>
+          </span>
+      </li>
     </div>
   </div>
 </div>

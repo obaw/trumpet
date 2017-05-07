@@ -1,6 +1,7 @@
 package obaw.music.trumpet.channel.netease.search;
 
 import java.util.List;
+import obaw.music.trumpet.channel.netease.model.Page;
 import obaw.music.trumpet.channel.netease.model.Song;
 
 /**
@@ -8,7 +9,7 @@ import obaw.music.trumpet.channel.netease.model.Song;
  * @time 17-5-4 上午10:32
  * @describe 搜索歌曲结果
  */
-public class SongResult {
+public class SongResult extends Page {
 
   private List<Song> songs;
   private int songCount;

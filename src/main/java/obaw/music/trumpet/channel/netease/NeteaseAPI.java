@@ -20,6 +20,7 @@ import obaw.music.trumpet.channel.netease.search.ArtistResult;
 import obaw.music.trumpet.channel.netease.search.PlayListResult;
 import obaw.music.trumpet.channel.netease.search.SongResult;
 import obaw.music.trumpet.common.util.HttpUtil;
+import obaw.music.trumpet.common.util.Maps;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Component;
 
@@ -37,24 +38,32 @@ public class NeteaseAPI {
    * * 歌曲详情
    *
    * @param ids 歌曲ID
-   * @return
    */
   public List<Song> songDetail(String[] ids) {
     String id = StringUtils.join(ids, ',');
-    Map<String, String> query = new HashMap<>();
+    Map<String, Object> query = new HashMap<>();
     query.put("ids", "[" + id + "]");
     SongDetailRes response = doPost(Service.SONG, query, SongDetailRes.class);
     return response != null ? response.getSongs() : null;
+  }
+
+  public Song songDetail(String id) {
+    String[] ids = {id};
+    List<Song> songs = songDetail(ids);
+    if (songs.isEmpty()) {
+      return null;
+    } else {
+      return songs.get(0);
+    }
   }
 
   /**
    * * 歌词详情
    *
    * @param id 歌曲ID
-   * @return
    */
   public String songLyric(String id) {
-    Map<String, String> query = new HashMap<>();
+    Map<String, Object> query = new HashMap<>();
     query.put("id", id);
     LyricRes response = doPost(Service.LYRIC, query, LyricRes.class);
     return response != null ? response.getLyric() : null;
@@ -64,10 +73,9 @@ public class NeteaseAPI {
    * * 歌单详情
    *
    * @param id 歌单ID
-   * @return
    */
   public PlayList playList(String id) {
-    Map<String, String> query = new HashMap<>();
+    Map<String, Object> query = new HashMap<>();
     query.put("id", id);
     PlayListDetailRes response = doPost(Service.PLAYLIST, query, PlayListDetailRes.class);
     return response != null ? response.getResult() : null;
@@ -76,13 +84,12 @@ public class NeteaseAPI {
   /**
    * * 用户歌单
    *
-   * @param uid　用户ID
+   * @param uid 　用户ID
    * @param page 页码
    * @param pageSize 页大小
-   * @return
    */
   public List<PlayList> userPlayList(String uid, int page, int pageSize) {
-    Map<String, String> query = new HashMap<>();
+    Map<String, Object> query = new HashMap<>();
     query.put("uid", uid);
     query.put("offset", page + "");
     query.put("limit", pageSize + "");
@@ -92,58 +99,48 @@ public class NeteaseAPI {
 
   /**
    * * 搜索歌曲
-   *
-   * @param keyword
-   * @param page
-   * @param pageSize
-   * @return
    */
   public SongResult searchSong(String keyword, Integer page, Integer pageSize) {
     SearchRes<SongResult> search =
-        search(keyword, 1, page, pageSize, new TypeToken<SearchRes<SongResult>>() {}.getType());
+        search(keyword, 1, page * pageSize, pageSize, new TypeToken<SearchRes<SongResult>>() {
+        }.getType());
+    search.getResult().setPage(page);
+    search.getResult().setPageSize(pageSize);
+    search.getResult().setAllPage(
+        search.getResult().getSongCount() % pageSize == 0 ? search.getResult().getSongCount()
+            / pageSize : search.getResult().getSongCount()
+            / pageSize + 1);
     return search != null ? search.getResult() : null;
   }
 
   /**
    * * 搜索专辑
-   *
-   * @param keyword
-   * @param page
-   * @param pageSize
-   * @return
    */
   public AlbumResult searchAlbum(String keyword, Integer page, Integer pageSize) {
     SearchRes<AlbumResult> search =
-        search(keyword, 10, page, pageSize, new TypeToken<SearchRes<AlbumResult>>() {}.getType());
+        search(keyword, 10, page, pageSize, new TypeToken<SearchRes<AlbumResult>>() {
+        }.getType());
     return search != null ? search.getResult() : null;
   }
 
   /**
    * * 搜索歌手
-   *
-   * @param keyword
-   * @param page
-   * @param pageSize
-   * @return
    */
   public ArtistResult searchArtist(String keyword, Integer page, Integer pageSize) {
     SearchRes<ArtistResult> search =
-        search(keyword, 100, page, pageSize, new TypeToken<SearchRes<ArtistResult>>() {}.getType());
+        search(keyword, 100, page, pageSize, new TypeToken<SearchRes<ArtistResult>>() {
+        }.getType());
     return search != null ? search.getResult() : null;
   }
 
   /**
    * * 搜索歌单
-   *
-   * @param keyword
-   * @param page
-   * @param pageSize
-   * @return
    */
   public PlayListResult searchPlayList(String keyword, Integer page, Integer pageSize) {
     SearchRes<PlayListResult> search =
         search(
-            keyword, 1000, page, pageSize, new TypeToken<SearchRes<PlayListResult>>() {}.getType());
+            keyword, 1000, page, pageSize, new TypeToken<SearchRes<PlayListResult>>() {
+            }.getType());
     return search != null ? search.getResult() : null;
   }
 
@@ -154,20 +151,20 @@ public class NeteaseAPI {
   /**
    * * 搜索
    *
-   * @param keyword　关键字
+   * @param keyword 　关键字
    * @param type 类型1=歌曲,10=专辑,100=歌手,1000=歌单,1002=用户,1004=mv,1006=歌词,1009=主播电台
-   * @param page　当前页
-   * @param pageSize　页大小
-   * @return
+   * @param page 　当前页
+   * @param pageSize 　页大小
    */
   private <T> T search(
       String keyword, Integer type, Integer page, Integer pageSize, Type classzType) {
-    Map<String, String> query = new HashMap<>();
+    Map<String, Object> query = new HashMap<>();
     query.put("s", keyword);
-    query.put("offset", page + "");
-    query.put("limit", pageSize + "");
-    query.put("type", type + "");
-    String post = HttpUtil.post(NeteaseAPI.getaway + Service.SEARCH.getApi(), query);
+    query.put("offset", page);
+    query.put("limit", pageSize);
+    query.put("type", type);
+    String url = NeteaseAPI.getaway + Service.SEARCH.getApi() + "?" + Maps.toString(query);
+    String post = HttpUtil.post(url, null);
     BaseRes response = new Gson().fromJson(post, BaseRes.class);
     if (response.getCode() != 200) {
       return null;
@@ -175,10 +172,9 @@ public class NeteaseAPI {
     return new Gson().fromJson(post, classzType);
   }
 
-  private <T> T doPost(Service service, Map<String, String> param, Class<T> classz) {
-    String post = HttpUtil.post(NeteaseAPI.getaway + service.getApi(), param);
-    SearchRes<SongResult> songResut =
-        new Gson().fromJson(post, new TypeToken<SearchRes<SongResult>>() {}.getType());
+  private <T> T doPost(Service service, Map<String, Object> param, Class<T> classz) {
+    String url = NeteaseAPI.getaway + service.getApi() + "?" + Maps.toString(param);
+    String post = HttpUtil.post(url, null);
     BaseRes response = new Gson().fromJson(post, BaseRes.class);
     if (response.getCode() != 200) {
       return null;

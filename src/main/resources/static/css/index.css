@@ -41,6 +41,41 @@ input[type=text] {
   -webkit-transition: all .15s ease;
 }
 
+input[type=range] {
+  outline: none;
+  -webkit-appearance: none;
+  width: 100%;
+  background: rgba(192, 192, 192, 0.3);
+  display: block;
+  margin: 0;
+  border-radius: 10px;
+}
+
+input[type=range]::-webkit-slider-runnable-track {
+  height: 15px;
+  border-radius: 10px; /*将轨道设为圆角的*/
+}
+
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  height: 15px;
+  width: 15px;
+  background: rgba(0, 0, 0, 0);
+  border-radius: 50%; /*外观设置为圆形*/
+}
+
+input[type=range]::-webkit-slider-thumb:active {
+  height: 25px;
+  width: 25px;
+  margin-top: -5px;
+  background: #ffffff;
+}
+
+.material-icons.hover {
+  display: none;
+  margin-top: 12px;
+}
+
 #box {
   width: 1024px;
   height: 576px;
@@ -319,7 +354,7 @@ input[type=text] {
   cursor: default;
 }
 
-.results-list, .songs, .starred-list {
+.results-list, .songs, .starred-list, .queue{
   overflow: auto;
   max-height: 100%;
   -o-transition: all .2s ease;
@@ -338,7 +373,7 @@ ol, ul {
   list-style: none;
 }
 
-.results-list li, .songs li, .starred-list li {
+.results-list li, .songs li, .queue-list li {
   line-height: 50px;
   text-shadow: 0 2px 2px rgba(0, 0, 0, .1);
   text-transform: uppercase;
@@ -349,7 +384,7 @@ ol, ul {
   cursor: pointer;
 }
 
-.results-list li span, .songs li span, .starred-list li span {
+.results-list li span, .songs li span, .queue-list li span {
   margin-right: 20px;
   font-size: 12px;
   font-weight: 300;
@@ -359,12 +394,47 @@ ol, ul {
   text-align: center;
 }
 
-.results-list li p, .songs li p, .starred-list li p {
+.results-list li p, .songs li p, .queue-list li p {
   float: left;
   max-width: 370px;
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
+}
+
+.results-list li .float-r, .songs li .float-r, .queue-list li .float-r {
+  float: right;
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.results-list li:hover, .songs li:hover, .queue-list li:hover {
+  background: rgba(0, 0, 0, .1);
+}
+
+.results-list li:hover i, .songs li:hover i, .queue-list li:hover i {
+  display: none;
+}
+
+.results-list li:hover .material-icons, .songs li:hover .material-icons, .queue-list li:hover .material-icons {
+  display: block;
+}
+
+.songs li .float-r i, .queue-list li .float-r i {
+  margin-top: 12px;
+}
+
+.results-list li p {
+  max-width: 190px;
+}
+
+.results-list, .queue-list {
+  width: 100%;
+  max-height: -webkit-calc(100% - 70px);
+  max-height: calc(100% - 70px);
+  position: absolute;
+  top: 70px;
+  left: 0;
 }
 
 .bottom {
@@ -394,11 +464,95 @@ ol, ul {
   position: absolute;
 }
 
+.bottom .controls {
+  display: table;
+  height: 100%;
+  width: 100%;
+  table-layout: fixed;
+  font-size: 14px;
+  color: rgba(255, 255, 255, .7);
+}
+
+.bottom #currentNP {
+  width: 65px;
+}
+
+.bottom .controls > div {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.bottom #bottomArt {
+  width: 70px;
+  height: 70px;
+  margin-left: -20px;
+  cursor: pointer;
+}
+
+.bottom .controls .c-btn {
+  width: 45px;
+}
+
+.bottom .controls .c-btn i {
+  font-size: 40px;
+  float: left;
+  cursor: pointer;
+}
+
+.bottom .controls .o-btn i {
+  font-size: 24px;
+  float: right;
+  cursor: pointer;
+}
+
+.bottom .controls .s-time, .more-btn, .o-btn, .share-btn {
+  width: 35px;
+}
+
+.bottom .controls .slider {
+  width: 50%;
+  position: relative;
+}
+
+.sliderBg {
+  content: "";
+  position: absolute;
+  height: 15px;
+  border-radius: 10px;
+  background: #ffffff;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.controls .song-length.s-time {
+  text-align: right;
+}
+
+.queue {
+  width: 440px;
+  height: calc(100% - 70px);
+  background-color: rgba(0, 0, 0, .7);
+  bottom: 70px;
+  right: 0;
+  padding: 20px;
+  line-height: 1.4;
+  z-index: 10;
+  -webkit-transform: translate3d(100%, 0, 0);
+  transform: translate3d(100%, 0, 0);
+  -o-transition: all .2s ease;
+  transition: all .2s ease;
+  -webkit-transition: all .2s ease;
+}
+
+.queue.active {
+  transform: translate3d(0, 0, 0);
+}
+
 #box, .bg, .bg-blur, .bg-lyr {
   border-radius: 8px;
 }
 
-#box, .bg, .bg-blur, .bg-lyr, .header, .menu, .play {
+#box, .bg, .bg-blur, .bg-lyr, .header, .menu, .play, .queue {
   position: absolute;
 }
 
