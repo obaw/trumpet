@@ -354,7 +354,7 @@ input[type=range]::-webkit-slider-thumb:active {
   cursor: default;
 }
 
-.results-list, .songs, .starred-list, .queue{
+.results-list, .songs, .starred-list, .queue {
   overflow: auto;
   max-height: 100%;
   -o-transition: all .2s ease;
@@ -424,7 +424,7 @@ ol, ul {
   margin-top: 12px;
 }
 
-.results-list li p {
+.results-list li p, .queue-list li p {
   max-width: 190px;
 }
 
