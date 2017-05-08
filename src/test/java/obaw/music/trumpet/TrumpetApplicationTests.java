@@ -80,7 +80,7 @@ public class TrumpetApplicationTests {
   @Test
   public void music() throws NoSuchAlgorithmException {
     //http://m2.music.126.net/XYVgKjLVhUz4E3Xzx6g1NA==/7957165651774040.mp3
-    String input = "18586144556292660";
+    String input = "18705991324982209";
     String key = "3go8&$8*3*3h0k(2)2";
     byte[] keyBytes = key.getBytes();
     byte[] searchBytes = input.getBytes();

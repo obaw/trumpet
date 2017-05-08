@@ -4,6 +4,7 @@
 var audio;
 var playBtn;
 $(function () {
+  window.name = "music.163.com";
   audio = $("#audio")[0];
   playBtn = $("#playBtn");
   userPlayList();
@@ -85,6 +86,7 @@ function ajaxCfg(url, param, func) { // 接口参数定义
     }
   });
 }
+
 /*用户歌单*/
 function userPlayList() {
   var uid = localStorage.getItem("uid");
@@ -93,8 +95,8 @@ function userPlayList() {
     uid = prompt("请输入您的id:", "33182671");
     localStorage.setItem("uid", uid);
   }
-  ajaxCfg("/netease/userPlaylist", {"uid": uid}, function (data) {
-    $(data.list).each(function () {
+  ajaxCfg("/netease/userPlaylist", {"uid": uid}, function (result) {
+    $(result.list).each(function () {
       var playlistId = this.id;
       var clone = $("#clonePlaylist");
       var playlist = clone.clone();
@@ -112,6 +114,7 @@ function userPlayList() {
       playlist.appendTo(".tab");
     });
   });
+
 }
 /*歌单详情*/
 function playlistDetail(id) {
@@ -134,8 +137,7 @@ function playlistDetail(id) {
       $(".bg-blur").css("background-image", "url('" + cover + ")'");
       $(songs).each(function (i) {
         var song = $("#cloneSong").clone();
-        song.find("p").eq(0).text(this.name);
-        song.find("p").eq(1).text("-" + this.artists[0].name);
+        song.find("p").text(this.name + "-" + this.artists[0].name);
         song.find("span:eq(0) i:eq(0)").text(i + 1);
         song.show();
         var songOb = this;
@@ -282,8 +284,7 @@ function addQueue(songs) {
       index = Number(lastSong.find("span:eq(0) i:eq(0)").html()) + 1;
     }
     var song = $("#cloneQueue").clone();
-    song.find("p").eq(0).text(value.name);
-    song.find("p").eq(1).text("-" + value.artists[0].name);
+    song.find("p").text(value.name + "-" + value.artists[0].name);
     song.find("span:eq(0) i:eq(0)").text(index);
     song.attr("id", value.id);
     song.show();
@@ -295,6 +296,7 @@ function addQueue(songs) {
   });
 }
 
+/*初始化播放列表*/
 function initQueue() {
   var queue = localStorage.getItem("queue");
   if (queue != null) {

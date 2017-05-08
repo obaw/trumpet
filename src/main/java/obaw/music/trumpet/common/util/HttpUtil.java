@@ -34,7 +34,7 @@ public class HttpUtil {
       requestBuilder.url(url);
       requestBuilder.post(RequestBody.create(mediaType, body == null ? "" : Maps.toString(body)));
       requestBuilder.addHeader("cache-control", "no-cache");
-      requestBuilder.addHeader("accept-encoding", "gzip");
+      requestBuilder.addHeader("accept-encoding", "gzip, deflate, sdch");
       requestBuilder.addHeader("content-type", "application/x-www-form-urlencoded");
       Request request = requestBuilder.build();
       Response execute = httpClient.newCall(request).execute();

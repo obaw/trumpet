@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ehcache>
+
+  <diskStore path="java.io.tmpdir"/>
+
+  <defaultCache maxElementsInMemory="10000" eternal="false"
+    timeToLiveSeconds="3600" overflowToDisk="false"/>
+
+  <cache name="userPlayList" maxEntriesLocalHeap="10000" eternal="false"
+    overflowToDisk="false" timeToLiveSeconds="7200"/>
+
+</ehcache> 

@@ -22,7 +22,7 @@ public class NeteaseController extends BaseController {
 
   @RequestMapping("/userPlaylist")
   public String userPlaylist(String uid) {
-    List<PlayList> playLists = neteaseAPI.userPlayList(uid, 0, 10);
+    List<PlayList> playLists = neteaseAPI.userPlayList(uid, 0, 20);
     ListRes<PlayList> res = new ListRes<>(200);
     res.setList(playLists);
     return gson.toJson(res);

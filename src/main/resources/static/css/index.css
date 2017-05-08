@@ -425,7 +425,7 @@ ol, ul {
 }
 
 .results-list li p, .queue-list li p {
-  max-width: 190px;
+  max-width: 220px;
 }
 
 .results-list, .queue-list {
