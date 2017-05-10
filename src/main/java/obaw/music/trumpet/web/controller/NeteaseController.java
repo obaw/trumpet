@@ -60,6 +60,11 @@ public class NeteaseController extends BaseController {
     return gson.toJson(res);
   }
 
+  /***
+   * 去掉翻唱的歌曲
+   * @param one
+   * @param res
+   */
   private void dis(List<Song> one, List<Song> res) {
     for (Song song : one) {
       String name = song.getName().toUpperCase();

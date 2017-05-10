@@ -7,7 +7,6 @@ import org.springframework.cache.annotation.EnableCaching;
 
 @EnableAutoConfiguration
 @SpringBootApplication
-@EnableCaching
 public class TrumpetApplication {
 
   public static void main(String[] args) {

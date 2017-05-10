@@ -6,7 +6,6 @@ import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import net.sf.ehcache.CacheManager;
 import obaw.music.trumpet.channel.netease.enums.Service;
 import obaw.music.trumpet.channel.netease.model.PlayList;
 import obaw.music.trumpet.channel.netease.model.Song;
@@ -23,7 +22,6 @@ import obaw.music.trumpet.channel.netease.search.SongResult;
 import obaw.music.trumpet.common.util.HttpUtil;
 import obaw.music.trumpet.common.util.Maps;
 import org.apache.commons.lang3.StringUtils;
-import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Component;
 
@@ -91,7 +89,6 @@ public class NeteaseAPI {
    * @param page 页码
    * @param pageSize 页大小
    */
-  @Cacheable(value = "userPlayList")
   public List<PlayList> userPlayList(String uid, int page, int pageSize) {
     Map<String, Object> query = new HashMap<>();
     query.put("uid", uid);
@@ -177,7 +174,6 @@ public class NeteaseAPI {
   }
 
   private <T> T doPost(Service service, Map<String, Object> param, Class<T> classz) {
-    System.out.println("查询");
     String url = NeteaseAPI.getaway + service.getApi() + "?" + Maps.toString(param);
     String post = HttpUtil.post(url, null);
     BaseRes response = new Gson().fromJson(post, BaseRes.class);

@@ -67,9 +67,8 @@ $(function () {
  */
 
 function ajaxCfg(url, param, func) { // 接口参数定义
-  var $path = 'http://localhost:8080'; // flyurl
   $.ajax({
-    url: $path + url,
+    url: url,
     type: 'post',
     data: param,
     dataType: "json",
