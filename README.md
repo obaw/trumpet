@@ -1,5 +1,5 @@
 # trumpet
-[根据网易云音乐api改版的音乐网站](https://splayerdemo.firebaseapp.com/examples/partial-custom-splayer-demo/)
+根据网易云音乐api改版的音乐网站
 
 ## 演示网址
 [http://music.helloxw.com](http://music.helloxw.com)
