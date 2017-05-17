@@ -1,6 +1,9 @@
 # trumpet
 [根据网易云音乐api改版的音乐网站](https://splayerdemo.firebaseapp.com/examples/partial-custom-splayer-demo/)
 
+## 演示网址
+[http://music.helloxw.com](http://music.helloxw.com)
+
 ## 网易云API
 ### 搜索
 `POST http://music.163.com/api/search/get/`
