@@ -187,6 +187,7 @@ function play(playlistId, song) {
     $("#" + playlistId).find(".art").css("background-image",
         "url('" + pic + ")'");
   }
+  console.log(song);
   $(".bg-blur").css("background-image", "url('" + pic + ")'");
   var url = song.mp3Url.replace("m2.music.126.net", "p2.music.126.net");
   $("#audio").attr("src", url);
