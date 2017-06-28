@@ -1,10 +1,10 @@
 package obaw.music.trumpet.common.util;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.TreeMap;
 import org.apache.commons.collections.MapUtils;
 import org.apache.commons.lang3.StringUtils;
+
+import java.util.Map;
+import java.util.TreeMap;
 
 /**
  * @author xiaowei
@@ -35,4 +35,5 @@ public class Maps {
 
     return signing.toString().substring(0, signing.length() - 1);
   }
+
 }
